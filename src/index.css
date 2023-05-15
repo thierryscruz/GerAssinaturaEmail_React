@@ -1,16 +1,15 @@
+
 body {
-  margin: 0;
+  margin: 2;
   padding: 0;
   font-family: Arial, sans-serif;
   display: flex;
+  background-color: #bae8fa;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f2f2f2;
 }
 
 .container {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -18,42 +17,117 @@ body {
 
 h1 {
   text-align: center;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  color: #11014b;
+  padding-bottom: 0px;
 }
 
 label {
   margin-bottom: 10px;
   font-size: 18px;
-  color: #666;
+  color: #1b1b1b;
 }
 
 input {
   padding: 10px;
   border: none;
-  border-radius: 5px;
-  margin-bottom: 20px;
+  border-radius: 15px;
+  margin-bottom: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   width: 100%;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 button {
-  background-color: #4CAF50;
-  color: rgb(255, 255, 255);
+  background-color: #FFAF50;
+  color: rgb(0, 0, 0);
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+  align-items: center;
 }
 
 button:hover {
-  background-color: #3e8e41;
+  background-color: #010e80;
+  color: rgb(255, 255, 255);
 }
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+  max-width: 500px;
+  margin: 0 auto;
+  margin: auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+}
+
+#logo-select {
+  text-align: center;
+  width: 200px;
+  padding: 5px;
+  border-radius: 10;
+  cursor: pointer;
+  border-radius: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.logo-select {
+  text-align: center;
+  width: 500px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.app {
+  text-align: center;
+  width: 500px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.logo-select select {
+  font-size: 18px;
+  border: none;
+  align-items: center;
+  background-color: #FFAF50;
+  cursor: pointer;
+  transition: all 2.0s ease;
+}
+
+.logo-select select:hover {
+  background-color: #010e80;
+  color: rgb(255, 255, 255);
+}
+
+.logo-select option:checked{
+    background-color:#FFAF50;
+    color: #fff;
+}
+
+.logo-img {
+  transition: transform 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  transform: rotate(360deg);
+ 
+}
+
+.logo-img:hover {
+  transition: ease-in-out 1s;
+}
+
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+}
+
+.imagem {
+  padding-top: 10px;
+} 
