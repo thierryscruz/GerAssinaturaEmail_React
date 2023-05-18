@@ -27,15 +27,48 @@ function App() {
     switch (event.target.value) {
       case 'logo.png':
         setLogoAss(rapidonet);
+        setNome('');
+        setCargo('');
+        setEmail('');
+        setTelefone('');
+        setCelular('');
+        setImagemGerada('');
+        break;
+      case 'logo_bsb.png':
+        setLogoAss(rapidonet);
+        setNome('');
+        setCargo('');
+        setEmail('');
+        setTelefone('');
+        setCelular('');
+        setImagemGerada('');
         break;
       case 'logo_kiza.png':
         setLogoAss(kiza);
+        setNome('');
+        setCargo('');
+        setEmail('');
+        setTelefone('');
+        setCelular('');
+        setImagemGerada('');
         break;
       case 'logo_maxis.png':
         setLogoAss(maxis);
+        setNome('');
+        setCargo('');
+        setEmail('');
+        setTelefone('');
+        setCelular('');
+        setImagemGerada('');
         break;
       default:
         setLogoAss(rapidonet);
+        setNome('');
+        setCargo('');
+        setEmail('');
+        setTelefone('');
+        setCelular('');
+        setImagemGerada('');
         break;
     }
   }
@@ -75,29 +108,60 @@ function App() {
         ctx.fillStyle = '#629ecc';
         if (email.indexOf('@rapidonet.com.br') !== -1) {
           ctx.fillText(`${email}`, 59, 110);
+          ctx.fillStyle = '#f4a25a';
+          ctx.fillText(`www.rapidonet.com.br`, 47, 130);
         } else {
           ctx.fillText(`${email}@rapidonet.com.br`, 59, 110);
           ctx.fillStyle = '#f4a25a';
           ctx.fillText(`www.rapidonet.com.br`, 47, 130);
         }
       }
+
+      if (logoUrl === 'logo_bsb.png') {
+        ctx.fillStyle = '#000000';
+        ctx.fillText(`${telefone}`, 59, 73);
+        ctx.fillStyle = '#629ecc';
+        if (email.indexOf('@rapidonet.com.br') !== -1) {
+          ctx.fillText(`${email}`, 59, 110);
+          ctx.fillStyle = '#f4a25a';
+          ctx.fillText(`www.rapidonet.com.br`, 47, 130);
+        } else {
+          ctx.fillText(`${email}@rapidonet.com.br`, 59, 110);
+          ctx.fillStyle = '#f4a25a';
+          ctx.fillText(`www.rapidonet.com.br`, 47, 130);
+        }
+      }
+
       if (logoUrl === 'logo_kiza.png') {
+        ctx.fillStyle = '#629ecc';
         if (email.indexOf('@kiza.com.br') !== -1) {
           ctx.fillText(`${email}`, 59, 110);
+          ctx.fillStyle = '#f4a25a';
+          ctx.fillText(`www.kiza.com.br`, 47, 130);
+          ctx.fillStyle = '#000000';
+          ctx.fillText(`${telefone}`, 59, 73);
         } else {
           ctx.fillStyle = '#000000';
           ctx.fillText(`${telefone}`, 59, 73);
+          ctx.fillStyle = '#629ecc';
           ctx.fillText(`${email}@kiza.com.br`, 59, 110);
           ctx.fillStyle = '#f4a25a';
           ctx.fillText(`www.kiza.com.br`, 47, 130);
         }
       }
+
       if (logoUrl === 'logo_maxis.png') {
         if (email.indexOf('@maxis.com.br') !== -1) {
+          ctx.fillStyle = '#629ecc';
           ctx.fillText(`${email}`, 59, 110);
+          ctx.fillStyle = '#000000';
+          ctx.fillText(`${telefone}`, 59, 73);
+          ctx.fillStyle = '#f4a25a';
+          ctx.fillText(`www.maxis.com.br`, 47, 130);
         } else {
           ctx.fillStyle = '#000000';
           ctx.fillText(`${telefone}`, 59, 73);
+          ctx.fillStyle = '#629ecc';
           ctx.fillText(`${email}@maxis.com.br`, 59, 110);
           ctx.fillStyle = '#f4a25a';
           ctx.fillText(`www.maxis.com.br`, 47, 130);
@@ -125,6 +189,7 @@ function App() {
         <center><label htmlFor="logo-select" style={{ display: 'block', marginBottom: '1rem', fontWeight: 'bold' }}>Selecione uma Empresa:</label></center>
         <select id="logo-select" value={logoUrl} onChange={reloadLogo} >
           <option value="logo.png">Rapidonet</option>
+          <option value="logo_bsb.png">Rapidonet_Brasilia</option>
           <option value="logo_kiza.png">Kiza</option>
           <option value="logo_maxis.png">Maxis</option>
         </select></div>
@@ -164,7 +229,70 @@ function App() {
           {imagemGerada && (
             <div className="imagem">
               <center><img src={imagemGerada} alt="Imagem gerada a partir dos dados do formulário" />
-              <button type="button" onClick={() => setModalIsOpen(true)}>Como Usar?</button></center>
+                <button type="button" onClick={() => setModalIsOpen(true)}>Como Usar?</button></center>
+
+              <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
+                contentLabel="Example Modal">
+                <h2>Como usar a Assinatura no Outlook</h2>
+                <p>1. No menu do Outlook, clique em "Arquivo".</p>
+                <p>2. Clique em "Opções"</p>
+                <img src="./01_assinatura.png" alt="01_assinatura" />
+                <p>3. Do lado direito clique em Email, e depois do lado direto localize a opção "Assinaturas...".</p>
+                <img src="./02_assinatura.png" alt="02_assinatura" />
+                <p>4. Clique em "Novo".</p>
+                <img src="./03_assinatura.png" alt="03_assinatura" />
+                <p>5. Defina um nome para a assinatura e clique em OK. Caso já exista uma assinatura, este nome deverá ser diferente do já existente.</p>
+                <img src="./04_assinatura.png" alt="04_assinatura" />
+                <p>6. Insira a sua assinatura no campo "Editar assinatura" (ctrl+c ctrl+v).</p>
+                <p>6.1. Do lado direito selecione a conta de e-mail que deseja inserir a assinatura. Clique em OK.</p>
+                <img src="./05_assinatura.png" alt="05_assinatura" />
+                <p>7. Caso a assinatura seja uma imagem, clique no icone de imagem para selecionar o arquivo.</p>
+                <img src="./06_assinatura.png" alt="06_assinatura" />
+                <p>7.1. Selecione a imagem da assinatura e em seguida clique no botão "inserir".</p>
+                <img src="./07_assinatura.png" alt="07_assinatura" />
+                <p>7.2 Selecione a conta de e-mail que deseja inserir a assinatura, como mostra no passo 6.1, e clique em OK.</p>
+                <button onClick={() => setModalIsOpen(false)}>Fechar</button>
+              </Modal>
+            </div>
+          )}
+        </div>
+      )}
+      {logoUrl === 'logo_bsb.png' && (
+        // Formulário para a empresa Rapidonet
+        <div className="app">
+          <h3></h3>
+          <form className="form">
+            <div className="form-group">
+              <center><label>  Nome:</label></center>
+              <input type="text" value={capitalizeWords(nome)} onChange={(event) => setNome(event.target.value.toLowerCase())} />
+            </div>
+            <div className="form-group">
+              <center><label>Cargo:</label></center>
+              <input type="text" value={cargo} onChange={(event) => setCargo(event.target.value.toUpperCase())} />
+            </div>
+            <div className="form-group">
+              <center><label>E-mail:</label></center>
+              <input type="text" value={email} onChange={(event) => setEmail(event.target.value.toLowerCase())} />
+            </div>
+            <div className="form-group">
+              <center><label>Telefone:</label></center>
+              <InputMask mask="+ 55 (xx) xxxx-xxxx" value={telefone} onChange={(event) => setTelefone(event.target.value)} formatChars={{ 'x': '[0-9]' }} />
+            </div>
+            <label style={{ display: 'flex', alignItems: 'center' }}>
+              <div className="add-cel">
+                Adicionar Celular:<input type="checkbox" checked={adicionarCelular} onChange={() => setAdicionarCelular(!adicionarCelular)} />
+              </div></label>
+            <div className="form-group">
+              {adicionarCelular && (
+                <InputMask mask="+ 55 (99) 99999-9999" id="celular" name="celular" placeholder="Telefone celular" value={celular} onChange={(event) => setCelular(event.target.value)} />)}
+            </div>
+          </form>
+          <center><button type="button" onClick={gerarImagem}>Gerar imagem</button></center>
+          <br />
+          {imagemGerada && (
+            <div className="imagem">
+              <center><img src={imagemGerada} alt="Imagem gerada a partir dos dados do formulário" />
+                <button type="button" onClick={() => setModalIsOpen(true)}>Como Usar?</button></center>
 
               <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
                 contentLabel="Example Modal">

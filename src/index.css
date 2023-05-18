@@ -1,18 +1,14 @@
-
 body {
   margin: 2;
   padding: 0;
   font-family: Arial, sans-serif;
   display: flex;
-  background-color: #bae8fa;
+  background: rgb(177, 218, 245);
+  background: -moz-linear-gradient(180deg, rgba(186,232,250,1) 0%, rgb(155, 224, 251,1) 35%, rgba(255,255,255,1) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(186,232,250,1) 0%, rgba(155, 224, 251,1) 35%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(180deg, rgba(186,232,250,1) 0%, rgba(155, 224, 251,1) 35%, rgba(255,255,255,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#bae8fa",endColorstr="#ffffff",GradientType=1);
   justify-content: center;
-}
-
-.container {
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -22,7 +18,7 @@ h1 {
 }
 
 label {
-  margin-bottom: 10px;
+  margin-bottom: 45px;
   font-size: 18px;
   color: #1b1b1b;
 }
@@ -107,16 +103,16 @@ button:hover {
   color: rgb(255, 255, 255);
 }
 
-.logo-select option:checked{
-    background-color:#FFAF50;
-    color: #fff;
+.logo-select option:checked {
+  background-color: #FFAF50;
+  color: #fff;
 }
 
 .logo-img {
   transition: transform 0.5s ease-in-out;
   transition: all 0.3s ease-in-out;
   transform: rotate(360deg);
- 
+
 }
 
 .logo-img:hover {
@@ -130,4 +126,4 @@ input[type="checkbox"] {
 
 .imagem {
   padding-top: 10px;
-} 
+}
