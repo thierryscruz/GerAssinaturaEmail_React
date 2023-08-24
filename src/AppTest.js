@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import './index.css';
 import rapidonet from './rapidonet.png';
+import wrapidonet from './wrapidonet.png';
 import kiza from './kiza.png';
 import maxis from './maxis.png';
 import InputMask from "react-input-mask";
+import TextMask from 'react-text-mask';
 import Modal from 'react-modal';
+
+// Restante do código...
 
 function App() {
   const [nome, setNome] = useState('');
@@ -16,10 +20,27 @@ function App() {
   const [logoUrl, setLogoUrl] = useState('logo.png');
   const [logo, setLogoAss] = useState(rapidonet)
   const [adicionarCelular, setAdicionarCelular] = useState(false);
+  const [whatsapp, setWhatsapp] = useState(false);
   const [celular, setCelular] = useState("");
 
   function capitalizeWords(str) {
     return str.split(' ').map(word => word.slice(0, 1).toUpperCase() + word.substring(1)).join(' ');
+  }
+
+  function limparUnderscore(input) {
+    const valorSemUnderscore = input.value.replace(/_/g, '');
+    const mascara = setCelular(valorSemUnderscore);
+    input.value = mascara;
+  }
+
+  function fixoCelular(valor) {
+    const quantidadeDigitos = valor.replace(/\D/g, '').length;
+
+    if (quantidadeDigitos <= 12) {
+      return "+ 55 (62) 9999-99999";
+    } else{
+      return "+ 55 (62) 9 9999-9999"
+    }
   }
 
   function reloadLogo(event) {
@@ -106,7 +127,7 @@ function App() {
         }
 
         ctx.fillStyle = '#629ecc';
-        if (email.indexOf('@rapidonet.com.br') !== -1) {
+        if (email.indexOf('@') !== -1) {
           ctx.fillText(`${email}`, 59, 110);
           ctx.fillStyle = '#f4a25a';
           ctx.fillText(`www.rapidonet.com.br`, 47, 130);
@@ -121,7 +142,7 @@ function App() {
         ctx.fillStyle = '#000000';
         ctx.fillText(`${telefone}`, 59, 73);
         ctx.fillStyle = '#629ecc';
-        if (email.indexOf('@rapidonet.com.br') !== -1) {
+        if (email.indexOf('@') !== -1) {
           ctx.fillText(`${email}`, 59, 110);
           ctx.fillStyle = '#f4a25a';
           ctx.fillText(`www.rapidonet.com.br`, 47, 130);
@@ -134,7 +155,7 @@ function App() {
 
       if (logoUrl === 'logo_kiza.png') {
         ctx.fillStyle = '#629ecc';
-        if (email.indexOf('@kiza.com.br') !== -1) {
+        if (email.indexOf('@') !== -1) {
           ctx.fillText(`${email}`, 59, 110);
           ctx.fillStyle = '#f4a25a';
           ctx.fillText(`www.kiza.com.br`, 47, 130);
@@ -151,7 +172,7 @@ function App() {
       }
 
       if (logoUrl === 'logo_maxis.png') {
-        if (email.indexOf('@maxis.com.br') !== -1) {
+        if (email.indexOf('@') !== -1) {
           ctx.fillStyle = '#629ecc';
           ctx.fillText(`${email}`, 59, 110);
           ctx.fillStyle = '#000000';
@@ -169,7 +190,7 @@ function App() {
       }
       if (adicionarCelular === true) {
         ctx.fillStyle = '#000000';
-        ctx.fillText(`${celular}`, 59, 87);
+        ctx.fillText(`${celular}`, 59, 92);
       }
       // Converte o canvas para uma imagem PNG
       const imagemPng = canvas.toDataURL('image/png');
@@ -205,6 +226,7 @@ function App() {
             </div>
             <div className="form-group">
               <center><label>Cargo:</label></center>
+
               <input type="text" value={cargo} onChange={(event) => setCargo(event.target.value.toUpperCase())} />
             </div>
             <div className="form-group">
@@ -217,12 +239,32 @@ function App() {
             </div>
             <label style={{ display: 'flex', alignItems: 'center' }}>
               <div className="add-cel">
-                Adicionar Celular:<input type="checkbox" checked={adicionarCelular} onChange={() => setAdicionarCelular(!adicionarCelular)} />
-              </div></label>
+                Adicionar Celular:
+                <input type="checkbox" checked={adicionarCelular} onChange={() => setAdicionarCelular(!adicionarCelular)} />
+              </div>
+              {adicionarCelular && (
+                <div className="add-whts">
+                  Whatsapp:
+                  <input type="checkbox" checked={whatsapp} onChange={(event) => {
+                    setWhatsapp(event.target.checked);
+                    if (event.target.checked) {
+                      setLogoAss(wrapidonet);
+                      console.log("O checkbox do Whatsapp está marcado");
+                    } else {
+                      setLogoAss(rapidonet);
+                      console.log("O checkbox do Whatsapp está desmarcado");
+                    }
+                  }} />
+                </div>
+              )}
+            </label>
             <div className="form-group">
               {adicionarCelular && (
-                <InputMask mask="+ 55 (99) 99999-9999" id="celular" name="celular" placeholder="Telefone celular" value={celular} onChange={(event) => setCelular(event.target.value)} />)}
+                <InputMask mask={fixoCelular(celular)} id="celular" value={celular} onChange={(event) =>
+                   { setCelular(event.target.value); limparUnderscore(event.target); }}/>
+              )}
             </div>
+
           </form>
           <center><button type="button" onClick={gerarImagem}>Gerar imagem</button></center>
           <br />
@@ -284,7 +326,8 @@ function App() {
               </div></label>
             <div className="form-group">
               {adicionarCelular && (
-                <InputMask mask="+ 55 (99) 99999-9999" id="celular" name="celular" placeholder="Telefone celular" value={celular} onChange={(event) => setCelular(event.target.value)} />)}
+                <InputMask mask="+ 55 (99) 99999-9999" id="celular" name="celular" placeholder="Telefone celular" value={celular} 
+                onChange={(event) => setCelular(event.target.value)} />)}
             </div>
           </form>
           <center><button type="button" onClick={gerarImagem}>Gerar imagem</button></center>
@@ -410,7 +453,7 @@ function App() {
               </div>
               <div className="form-group">
                 <center><label>Telefone:</label></center>
-                <InputMask mask="+ 55 (xx) xxxx-xxxx" value={telefone} onChange={(event) => setTelefone(event.target.value)} formatChars={{ 'x': '[0-9]' }} />
+                <InputMask mask="+ 55 (xx) xxxx-xxxx  Ramal: xxx" value={telefone} onChange={(event) => setTelefone(event.target.value)} formatChars={{ 'x': '[0-9]' }} />
               </div>
               <label style={{ display: 'flex', alignItems: 'center' }}>
                 <div className="add-cel">
